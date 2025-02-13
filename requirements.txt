@@ -1,0 +1,8 @@
+streamlit
+crewai
+crewai-tools
+semantic_text_splitter
+tokenizers
+markitdown
+qdrant-client
+fastembed
