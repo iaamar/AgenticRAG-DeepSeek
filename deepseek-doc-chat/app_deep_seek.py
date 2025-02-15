@@ -6,22 +6,20 @@ import time
 import base64
 from crewai import Agent, Crew, Process, Task, LLM
 from src.agentic_rag.tools.custom_tool import DocumentSearchTool
+from src.agentic_rag.tools.custom_tool import FireCrawlWebSearchTool
 from crewai_tools import SerperDevTool
+
 
 @st.cache_resource
 def load_llm():
-    llm = LLM(
+    return LLM(
         model="ollama/deepseek-r1:1.5b",
         base_url="http://localhost:11434"
     )
-    return llm
 
-# ===========================
-#   Define Agents & Tasks
-# ===========================
 def create_agents_and_tasks(pdf_tool):
     """Creates a Crew with the given PDF tool (if any) and a web search tool."""
-    web_search_tool = SerperDevTool()
+    web_search_tool = FireCrawlWebSearchTool()
 
     retriever_agent = Agent(
         role="Retrieve relevant information to answer the user query: {query}",
@@ -83,24 +81,21 @@ def create_agents_and_tasks(pdf_tool):
     crew = Crew(
         agents=[retriever_agent, response_synthesizer_agent],
         tasks=[retrieval_task, response_task],
-        process=Process.sequential,  # or Process.hierarchical
+        process=Process.sequential,
         verbose=True
     )
     return crew
 
-# ===========================
-#   Streamlit Setup
-# ===========================
 st.set_page_config(page_title="Agentic RAG")
 
 if "messages" not in st.session_state:
-    st.session_state.messages = []  # Chat history
+    st.session_state.messages = []
 
 if "pdf_tool" not in st.session_state:
-    st.session_state.pdf_tool = None  # Store the DocumentSearchTool
+    st.session_state.pdf_tool = None
 
 if "crew" not in st.session_state:
-    st.session_state.crew = None      # Store the Crew object
+    st.session_state.crew = None  
 
 def reset_chat():
     st.session_state.messages = []
@@ -126,9 +121,6 @@ def display_pdf(file_bytes: bytes, file_name: str):
     """
     st.markdown(pdf_display, unsafe_allow_html=True)
 
-# ===========================
-#   Sidebar
-# ===========================
 with st.sidebar:
     st.markdown("<h1>Agentic RAG using</h1>", unsafe_allow_html=True)
     st.image("assets/deepseek.png", use_container_width=True)
@@ -156,12 +148,6 @@ with st.sidebar:
     
     st.button("Clear Chat", on_click=reset_chat)
 
-# ===========================
-#   Main Chat Interface
-# ===========================
-# st.markdown("""
-#     # Agentic RAG using <img src="data:image/png;base64,{}" width="170" style="vertical-align: -3px;">
-# """.format(base64.b64encode(open("assets/deep-seek.png", "rb").read()).decode()), unsafe_allow_html=True)
 
 # Render existing conversation
 for message in st.session_state.messages:

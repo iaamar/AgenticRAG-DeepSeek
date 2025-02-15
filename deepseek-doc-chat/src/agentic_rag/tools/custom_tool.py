@@ -6,6 +6,10 @@ from markitdown import MarkItDown
 from qdrant_client import QdrantClient
 from semantic_text_splitter import TextSplitter
 from tokenizers import Tokenizer
+import requests
+from crewai_tools import TXTSearchTool
+from dotenv import load_dotenv
+load_dotenv()
 
 class DocumentSearchToolInput(BaseModel):
     """Input schema for DocumentSearchTool."""
@@ -61,3 +65,32 @@ class DocumentSearchTool(BaseTool):
         docs = [chunk.document for chunk in relevant_chunks]
         separator = "\n___\n"
         return separator.join(docs)
+
+
+class FireCrawlWebSearchToolInput(BaseModel):
+    """Input schema for FireCrawlWebSearchTool."""
+    query: str = Field(..., description="Query to search the web.")
+
+class FireCrawlWebSearchTool(BaseTool):
+    """A web search tool using FireCrawl API."""
+    
+    name: str = "FireCrawlWebSearchTool"
+    description: str = "Search the web using FireCrawl API for the given query."
+    args_schema: Type[BaseModel] = FireCrawlWebSearchToolInput
+    api_key: str = os.getenv("FIRECRAWL_API_KEY")
+    api_url: str = "https://api.firecrawl.com/search"
+
+    def _run(self, query: str) -> list:
+        headers = {
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json"
+        }
+
+        params = {"q": query, "num": 5}
+        response = requests.get(self.api_url, headers=headers, params=params)
+        
+        if response.status_code != 200:
+            raise Exception(f"FireCrawl API Error: {response.text}")
+        
+        return [{"title": r["title"], "link": r["link"], "snippet": r.get("snippet", "")} 
+                for r in response.json().get("results", [])]
