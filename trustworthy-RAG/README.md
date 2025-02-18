@@ -2,6 +2,10 @@
 
 <video src="https://www.loom.com/embed/bf7df9ccda0c420ea907e436162db8d2?sid=852934f4-22a7-49b9-b640-f1651abae648" controls></video>
 
+## Architecture:
+
+![Trustworthy RAG](./docs/Trustworthy-RAG.jpg)
+
 This project leverages Cleanlab's Trustworthy Language Model (TLM) for reliable document analysis with confidence scoring, combined with LlamaParse's advanced document parsing capabilities to process complex legal documents into structured markdown format.
 
 Before you begin, obtain your API keys:
