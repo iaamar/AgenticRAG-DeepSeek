@@ -1,7 +1,6 @@
 # Trustworthy RAG over complex documents using TLM and LlamaParse
 
-<video src="https://www.loom.com/embed/bf7df9ccda0c420ea907e436162db8d2?sid=852934f4-22a7-49b9-b640-f1651abae648" controls></video>
-
+## Demo
 
 [![Watch the video](https://cdn.loom.com/sessions/thumbnails/bf7df9ccda0c420ea907e436162db8d2-6dbdea2bde504fa8-full-play.gif)](https://www.loom.com/embed/bf7df9ccda0c420ea907e436162db8d2?sid=852934f4-22a7-49b9-b640-f1651abae648)
 
