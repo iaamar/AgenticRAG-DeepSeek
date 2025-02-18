@@ -1,6 +1,6 @@
 # Trustworthy RAG over complex documents using TLM and LlamaParse
 
-<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/bf7df9ccda0c420ea907e436162db8d2?sid=852934f4-22a7-49b9-b640-f1651abae648" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+<video src="https://www.loom.com/embed/bf7df9ccda0c420ea907e436162db8d2?sid=852934f4-22a7-49b9-b640-f1651abae648" controls></video>
 
 This project leverages Cleanlab's Trustworthy Language Model (TLM) for reliable document analysis with confidence scoring, combined with LlamaParse's advanced document parsing capabilities to process complex legal documents into structured markdown format.
 
@@ -43,6 +43,23 @@ python analyze.py --input lease_agreement.pdf
 # Batch process documents
 python batch_process.py --dir ./contracts --output analysis_results
 ```
+
+## Docker Setup
+
+```bash
+# Build the Docker image
+docker build -t trustworthy-rag .
+
+# Run the container
+docker run -p 8502:8502 --env-file .env trustworthy-rag
+
+# Or using docker-compose
+docker-compose up
+```
+
+> **Note:** Ensure your `.env` file contains:
+> - CLEANLAB_API_KEY
+> - LLAMA_CLOUD_API_KEY
 
 ## Document Support
 - PDF Contracts (scanned and digital)
