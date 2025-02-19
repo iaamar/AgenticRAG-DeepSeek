@@ -2,7 +2,9 @@
 
 99% AI system don't make it to production because it lacks to provide tangible results. Thus sharing my latest project: **Agentic RAG using High Performance Vector Search powered by DeepSeek-r1** 🐳! 
 
+## Demo
 
+[![Watch the video](https://cdn.loom.com/sessions/thumbnails/cc57d423ee7a4fcdaf6e84d3f9475cb2-ef7635670754ec41-full-play.gif)](https://www.loom.com/embed/cc57d423ee7a4fcdaf6e84d3f9475cb2?sid=33f10be9-3c8f-4d28-8d32-c9cd6da37a0b)
 
 **Objective:** 
 
@@ -24,9 +26,6 @@ This project leverages CrewAI to build an Agentic RAG that can search through yo
 6. Full automated/efficient data pipelines using CrewAI,
 
 7. Containerized solution with GPU-optimized Docker, can run on any system on planet earth.
-
-
-
 
 ## Architecture and Flow Diagram
 
