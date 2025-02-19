@@ -1,6 +1,32 @@
-# Agentic RAG using CrewAI
+# Agentic RAG using DeepSeek
 
+99% AI system don't make it to production because it lacks to provide tangible results. Thus sharing my latest project: **Agentic RAG using High Performance Vector Search powered by DeepSeek-r1** 🐳! 
+
+
+
+**Objective:** 
+
+In today's data-centric landscape, swift and precise access to information is paramount. This project is designed to streamline the retrieval of pertinent data from extensive document repositories, simplifying the search process for users and eliminating the need to sift through countless pages. By integrating cutting-edge AI technologies, this system boosts productivity and ensures users receive accurate responses to their inquiries.
 This project leverages CrewAI to build an Agentic RAG that can search through your docs and fallback to web search in case it doesn't find the answer in the docs. It has the option to use either deep-seek-r1 or llama 3.2 that runs locally. More details in the Running the app section below!
+
+## Signifance
+
+1. Blazing fast hybrid search, 
+
+2. < 3s latency,
+
+3. Reduced hallucination because of multi agentic system 
+
+4. Fully local
+
+5. Dual-model architecture (DeepSeek-R1/Llama 3.2),
+
+6. Full automated/efficient data pipelines using CrewAI,
+
+7. Containerized solution with GPU-optimized Docker, can run on any system on planet earth.
+
+
+
 
 ## Architecture and Flow Diagram
 
